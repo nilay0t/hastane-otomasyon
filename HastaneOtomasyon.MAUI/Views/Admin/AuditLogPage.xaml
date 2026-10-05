@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="HastaneOtomasyon.MAUI.Views.Admin.AuditLogPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Audit Log"
+    BackgroundColor="#F4F7FA"
+    Shell.NavBarIsVisible="False">
+
+    <Grid RowDefinitions="Auto,*">
+
+        <!-- HEADER -->
+        <Grid
+            Grid.Row="0"
+            BackgroundColor="#0F3D5E"
+            Padding="28,24"
+            ColumnDefinitions="*,Auto">
+
+            <VerticalStackLayout Grid.Column="0" Spacing="6">
+                <Label
+                    Text="SİSTEM YÖNETİMİ"
+                    FontSize="11"
+                    FontAttributes="Bold"
+                    CharacterSpacing="2"
+                    TextColor="#10B981" />
+
+                <Label
+                    Text="Denetim Kayıtları"
+                    FontSize="32"
+                    FontAttributes="Bold"
+                    TextColor="White" />
+
+                <Label
+                    Text="Backend servisinden gelen sistem işlem geçmişini görüntüleyin."
+                    FontSize="14"
+                    TextColor="#9BD4E8" />
+            </VerticalStackLayout>
+
+            <HorizontalStackLayout
+                Grid.Column="1"
+                Spacing="12"
+                VerticalOptions="Center">
+
+                <Button
+                    x:Name="BackButton"
+                    Text="← Panele Dön"
+                    Clicked="OnBackClicked"
+                    BackgroundColor="#173F5F"
+                    BorderColor="#2A6F8F"
+                    BorderWidth="1"
+                    TextColor="White"
+                    CornerRadius="14"
+                    HeightRequest="44"
+                    Padding="16,0"
+                    FontAttributes="Bold" />
+
+                <Button
+                    x:Name="RefreshButton"
+                    Text="Yenile"
+                    Clicked="OnRefreshClicked"
+                    BackgroundColor="#10B981"
+                    TextColor="White"
+                    CornerRadius="14"
+                    HeightRequest="44"
+                    Padding="16,0"
+                    FontAttributes="Bold" />
+            </HorizontalStackLayout>
+        </Grid>
+
+        <!-- CONTENT -->
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Padding="28" Spacing="20">
+
+                <!-- SEARCH CARD -->
+                <Border
+                    BackgroundColor="White"
+                    Stroke="#D9E2EC"
+                    StrokeThickness="1"
+                    Padding="20">
+
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="22" />
+                    </Border.StrokeShape>
+
+                    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="12">
+
+                        <Border
+                            Grid.Column="0"
+                            BackgroundColor="#F8FAFC"
+                            Stroke="#E2E8F0"
+                            StrokeThickness="1"
+                            Padding="14,0">
+
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="14" />
+                            </Border.StrokeShape>
+
+                            <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10">
+                                <Label
+                                    Grid.Column="0"
+                                    Text="🔍"
+                                    FontSize="16"
+                                    VerticalOptions="Center" />
+
+                                <Entry
+                                    Grid.Column="1"
+                                    x:Name="AuditSearchEntry"
+                                    Placeholder="İşlem, kullanıcı, tablo adı veya tarih ara..."
+                                    TextChanged="OnSearchTextChanged"
+                                    TextColor="#102A43"
+                                    PlaceholderColor="#94A3B8"
+                                    BackgroundColor="Transparent"
+                                    HeightRequest="44" />
+                            </Grid>
+                        </Border>
+
+                        <Button
+                            Grid.Column="1"
+                            x:Name="ClearSearchButton"
+                            Text="Temizle"
+                            Clicked="OnClearSearchClicked"
+                            BackgroundColor="#EFF6FF"
+                            BorderColor="#BFDBFE"
+                            BorderWidth="1"
+                            TextColor="#0F3D5E"
+                            CornerRadius="14"
+                            HeightRequest="44"
+                            Padding="16,0"
+                            FontAttributes="Bold" />
+                    </Grid>
+                </Border>
+
+                <!-- STATUS -->
+                <Border
+                    x:Name="StatusContainer"
+                    IsVisible="False"
+                    BackgroundColor="#F0F9FF"
+                    Stroke="#BAE6FD"
+                    StrokeThickness="1"
+                    Padding="16">
+
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="16" />
+                    </Border.StrokeShape>
+
+                    <HorizontalStackLayout Spacing="12">
+                        <ActivityIndicator
+                            x:Name="LoadingIndicator"
+                            IsRunning="False"
+                            IsVisible="False"
+                            Color="#0F3D5E"
+                            WidthRequest="22"
+                            HeightRequest="22" />
+
+                        <Label
+                            x:Name="StatusLabel"
+                            Text=""
+                            FontSize="13"
+                            TextColor="#0F3D5E"
+                            VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+                </Border>
+
+                <!-- AUDIT LIST -->
+                <CollectionView
+                    x:Name="AuditLogCollectionView"
+                    SelectionMode="None">
+
+                    <CollectionView.EmptyView>
+                        <Border
+                            BackgroundColor="White"
+                            Stroke="#D9E2EC"
+                            StrokeThickness="1"
+                            Padding="28">
+
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="22" />
+                            </Border.StrokeShape>
+
+                            <VerticalStackLayout Spacing="10" HorizontalOptions="Center">
+                                <Label
+                                    Text="🛡"
+                                    FontSize="34"
+                                    HorizontalOptions="Center" />
+
+                                <Label
+                                    Text="Denetim kaydı bulunamadı"
+                                    FontSize="18"
+                                    FontAttributes="Bold"
+                                    TextColor="#102A43"
+                                    HorizontalTextAlignment="Center" />
+
+                                <Label
+                                    Text="Backend servisinden gelen audit log verisi bulunmadığında bu alan gösterilir."
+                                    FontSize="13"
+                                    TextColor="#627D98"
+                                    HorizontalTextAlignment="Center" />
+                            </VerticalStackLayout>
+                        </Border>
+                    </CollectionView.EmptyView>
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Border
+                                BackgroundColor="White"
+                                Stroke="#D9E2EC"
+                                StrokeThickness="1"
+                                Padding="20"
+                                Margin="0,0,0,14">
+
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="22" />
+                                </Border.StrokeShape>
+
+                                <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="18">
+
+                                    <Border
+                                        Grid.Column="0"
+                                        WidthRequest="58"
+                                        HeightRequest="58"
+                                        BackgroundColor="#FEF3C7"
+                                        StrokeThickness="0"
+                                        VerticalOptions="Center">
+
+                                        <Border.StrokeShape>
+                                            <RoundRectangle CornerRadius="18" />
+                                        </Border.StrokeShape>
+
+                                        <Label
+                                            Text="🛡"
+                                            FontSize="24"
+                                            HorizontalOptions="Center"
+                                            VerticalOptions="Center" />
+                                    </Border>
+
+                                    <VerticalStackLayout Grid.Column="1" Spacing="6">
+                                        <Label
+                                            Text="{Binding Title}"
+                                            FontSize="18"
+                                            FontAttributes="Bold"
+                                            TextColor="#102A43" />
+
+                                        <Label
+                                            Text="{Binding Subtitle}"
+                                            FontSize="13"
+                                            TextColor="#627D98" />
+
+                                        <HorizontalStackLayout Spacing="10">
+                                            <Border
+                                                BackgroundColor="#F8FAFC"
+                                                Stroke="#E2E8F0"
+                                                StrokeThickness="1"
+                                                Padding="10,5">
+
+                                                <Border.StrokeShape>
+                                                    <RoundRectangle CornerRadius="12" />
+                                                </Border.StrokeShape>
+
+                                                <Label
+                                                    Text="{Binding TableText}"
+                                                    FontSize="12"
+                                                    FontAttributes="Bold"
+                                                    TextColor="#0F3D5E" />
+                                            </Border>
+
+                                            <Label
+                                                Text="{Binding DateText}"
+                                                FontSize="12"
+                                                TextColor="#8899AA"
+                                                VerticalOptions="Center" />
+                                        </HorizontalStackLayout>
+                                    </VerticalStackLayout>
+
+                                    <Label
+                                        Grid.Column="2"
+                                        Text="{Binding IdText}"
+                                        FontSize="12"
+                                        TextColor="#94A3B8"
+                                        VerticalOptions="Center" />
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="HastaneOtomasyon.MAUI.Views.Randevu.RandevuOlusturPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
+    Title="Randevu Oluştur"
+    BackgroundColor="#F4F7FA"
+    Shell.NavBarIsVisible="False">
+
+    <Grid RowDefinitions="Auto,*">
+
+        <!-- HEADER -->
+        <Grid
+            Grid.Row="0"
+            BackgroundColor="#0F3D5E"
+            Padding="28,24"
+            ColumnDefinitions="*,Auto">
+
+            <VerticalStackLayout Grid.Column="0" Spacing="6">
+                <Label
+                    Text="RANDEVU YÖNETİMİ"
+                    FontSize="11"
+                    FontAttributes="Bold"
+                    CharacterSpacing="2"
+                    TextColor="#10B981" />
+
+                <Label
+                    Text="Randevu Oluştur"
+                    FontSize="32"
+                    FontAttributes="Bold"
+                    TextColor="White" />
+
+                <Label
+                    Text="Backend servisinden gelen hasta ve doktor bilgileriyle yeni randevu oluşturun."
+                    FontSize="14"
+                    TextColor="#9BD4E8" />
+            </VerticalStackLayout>
+
+            <Button
+                Grid.Column="1"
+                x:Name="BackButton"
+                Text="← Listeye Dön"
+                Clicked="OnBackClicked"
+                BackgroundColor="#173F5F"
+                BorderColor="#2A6F8F"
+                BorderWidth="1"
+                TextColor="White"
+                CornerRadius="14"
+                HeightRequest="44"
+                Padding="16,0"
+                FontAttributes="Bold"
+                VerticalOptions="Center" />
+        </Grid>
+
+        <!-- CONTENT -->
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Padding="28" Spacing="20">
+
+                <!-- STATUS -->
+                <Border
+                    x:Name="StatusContainer"
+                    IsVisible="False"
+                    BackgroundColor="#F0F9FF"
+                    Stroke="#BAE6FD"
+                    StrokeThickness="1"
+                    Padding="16">
+
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="16" />
+                    </Border.StrokeShape>
+
+                    <HorizontalStackLayout Spacing="12">
+                        <ActivityIndicator
+                            x:Name="LoadingIndicator"
+                            IsRunning="False"
+                            IsVisible="False"
+                            Color="#0F3D5E"
+                            WidthRequest="22"
+                            HeightRequest="22" />
+
+                        <Label
+                            x:Name="StatusLabel"
+                            Text=""
+                            FontSize="13"
+                            TextColor="#0F3D5E"
+                            VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+                </Border>
+
+                <!-- FORM CARD -->
+                <Border
+                    BackgroundColor="White"
+                    Stroke="#D9E2EC"
+                    StrokeThickness="1"
+                    Padding="24">
+
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="24" />
+                    </Border.StrokeShape>
+
+                    <VerticalStackLayout Spacing="18">
+
+                        <VerticalStackLayout Spacing="5">
+                            <Label
+                                Text="YENİ RANDEVU"
+                                FontSize="11"
+                                FontAttributes="Bold"
+                                CharacterSpacing="2"
+                                TextColor="#10B981" />
+
+                            <Label
+                                Text="Randevu Bilgileri"
+                                FontSize="24"
+                                FontAttributes="Bold"
+                                TextColor="#102A43" />
+
+                            <Label
+                                Text="Lütfen randevu bilgilerini eksiksiz doldurunuz."
+                                FontSize="13"
+                                TextColor="#627D98" />
+                        </VerticalStackLayout>
+
+                        <!-- Hasta -->
+                        <VerticalStackLayout x:Name="HastaSection" Spacing="7">
+                            <Label
+                                Text="HASTA"
+                                FontSize="10"
+                                FontAttributes="Bold"
+                                CharacterSpacing="1.8"
+                                TextColor="#374151" />
+
+                            <Border
+                                BackgroundColor="#F8FAFC"
+                                Stroke="#E2E8F0"
+                                StrokeThickness="2"
+                                Padding="14,0">
+
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="14" />
+                                </Border.StrokeShape>
+
+                                <Picker
+                                    x:Name="HastaPicker"
+                                    Title="Hasta seçiniz"
+                                    ItemDisplayBinding="{Binding DisplayName}"
+                                    SelectedIndexChanged="OnHastaPickerSelectionChanged"
+                                    TextColor="#0F172A"
+                                    TitleColor="#94A3B8"
+                                    BackgroundColor="Transparent"
+                                    HeightRequest="46" />
+                            </Border>
+                        </VerticalStackLayout>
+
+                        <!-- Doktor -->
+                        <VerticalStackLayout Spacing="7">
+                            <Label
+                                Text="DOKTOR"
+                                FontSize="10"
+                                FontAttributes="Bold"
+                                CharacterSpacing="1.8"
+                                TextColor="#374151" />
+
+                            <Border
+                                BackgroundColor="#F8FAFC"
+                                Stroke="#E2E8F0"
+                                StrokeThickness="2"
+                                Padding="14,0">
+
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="14" />
+                                </Border.StrokeShape>
+
+                                <Picker
+                                    x:Name="DoktorPicker"
+                                    Title="Doktor seçiniz"
+                                    ItemDisplayBinding="{Binding DisplayName}"
+                                    SelectedIndexChanged="OnDoktorPickerSelectionChanged"
+                                    TextColor="#0F172A"
+                                    TitleColor="#94A3B8"
+                                    BackgroundColor="Transparent"
+                                    HeightRequest="46" />
+                            </Border>
+                        </VerticalStackLayout>
+
+                        <!-- Tarih Saat -->
+                        <Grid ColumnDefinitions="*,*" ColumnSpacing="14">
+
+                            <VerticalStackLayout Grid.Column="0" Spacing="7">
+                                <Label
+                                    Text="TARİH"
+                                    FontSize="10"
+                                    FontAttributes="Bold"
+                                    CharacterSpacing="1.8"
+                                    TextColor="#374151" />
+
+                                <Border
+                                    BackgroundColor="#F8FAFC"
+                                    Stroke="#E2E8F0"
+                                    StrokeThickness="2"
+                                    Padding="14,0">
+
+                                    <Border.StrokeShape>
+                                        <RoundRectangle CornerRadius="14" />
+                                    </Border.StrokeShape>
+
+                                    <DatePicker
+                                        x:Name="RandevuDatePicker"
+                                        TextColor="#0F172A"
+                                        BackgroundColor="Transparent"
+                                        HeightRequest="46" />
+                                </Border>
+                            </VerticalStackLayout>
+
+                            <VerticalStackLayout Grid.Column="1" Spacing="7">
+                                <Label
+                                    Text="SAAT"
+                                    FontSize="10"
+                                    FontAttributes="Bold"
+                                    CharacterSpacing="1.8"
+                                    TextColor="#374151" />
+
+                                <Border
+                                    BackgroundColor="#F8FAFC"
+                                    Stroke="#E2E8F0"
+                                    StrokeThickness="2"
+                                    Padding="14,0">
+
+                                    <Border.StrokeShape>
+                                        <RoundRectangle CornerRadius="14" />
+                                    </Border.StrokeShape>
+
+                                    <TimePicker
+                                        x:Name="RandevuTimePicker"
+                                        TextColor="#0F172A"
+                                        BackgroundColor="Transparent"
+                                        HeightRequest="46" />
+                                </Border>
+                            </VerticalStackLayout>
+                        </Grid>
+
+                        <!-- Tür -->
+                        <VerticalStackLayout Spacing="8">
+                            <Label
+                                Text="RANDEVU TÜRÜ"
+                                FontSize="10"
+                                FontAttributes="Bold"
+                                CharacterSpacing="1.8"
+                                TextColor="#374151" />
+
+                            <HorizontalStackLayout Spacing="24">
+                                <HorizontalStackLayout Spacing="6" VerticalOptions="Center">
+                                    <RadioButton
+                                        x:Name="MuayeneRadioButton"
+                                        GroupName="RandevuTuru"
+                                        IsChecked="True"
+                                        VerticalOptions="Center" />
+                                    <Label
+                                        Text="Muayene"
+                                        FontSize="14"
+                                        TextColor="#0F172A"
+                                        VerticalOptions="Center" />
+                                </HorizontalStackLayout>
+
+                                <HorizontalStackLayout Spacing="6" VerticalOptions="Center">
+                                    <RadioButton
+                                        x:Name="KontrolRadioButton"
+                                        GroupName="RandevuTuru"
+                                        VerticalOptions="Center" />
+                                    <Label
+                                        Text="Kontrol"
+                                        FontSize="14"
+                                        TextColor="#0F172A"
+                                        VerticalOptions="Center" />
+                                </HorizontalStackLayout>
+
+                                <HorizontalStackLayout Spacing="6" VerticalOptions="Center">
+                                    <RadioButton
+                                        x:Name="TakipRadioButton"
+                                        GroupName="RandevuTuru"
+                                        VerticalOptions="Center" />
+                                    <Label
+                                        Text="Takip"
+                                        FontSize="14"
+                                        TextColor="#0F172A"
+                                        VerticalOptions="Center" />
+                                </HorizontalStackLayout>
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+
+                        <!-- Not — Uranium UI Material EditorField (multiline) -->
+                        <material:EditorField
+                            x:Name="NotlarEditor"
+                            Title="Randevu Notu"
+                            AccentColor="#0F3D5E"
+                            BorderColor="#E2E8F0"
+                            TextColor="#0F172A"
+                            HeightRequest="90" />
+
+                        <!-- Buttons -->
+                        <Grid ColumnDefinitions="*,Auto" ColumnSpacing="12">
+
+                            <Button
+                                Grid.Column="0"
+                                x:Name="CreateButton"
+                                Text="Randevu Oluştur"
+                                Clicked="OnCreateAppointmentClicked"
+                                BackgroundColor="#0F3D5E"
+                                TextColor="White"
+                                CornerRadius="14"
+                                HeightRequest="50"
+                                FontAttributes="Bold" />
+
+                            <Button
+                                Grid.Column="1"
+                                Text="Yenile"
+                                Clicked="OnRefreshDataClicked"
+                                BackgroundColor="#EFF6FF"
+                                BorderColor="#BFDBFE"
+                                BorderWidth="1"
+                                TextColor="#0F3D5E"
+                                CornerRadius="14"
+                                HeightRequest="50"
+                                Padding="18,0"
+                                FontAttributes="Bold" />
+                        </Grid>
+
+                    </VerticalStackLayout>
+                </Border>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

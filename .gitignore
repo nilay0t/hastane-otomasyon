@@ -1,0 +1,33 @@
+.vs/
+**/bin/
+**/obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Build outputs
+Debug/
+Release/
+x64/
+x86/
+
+# NuGet
+packages/
+*.nupkg
+
+# Logs
+*.log
+
+# Secrets / local config
+.env
+.env.*
+!.env.example
+appsettings.Development.json
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+.claude/

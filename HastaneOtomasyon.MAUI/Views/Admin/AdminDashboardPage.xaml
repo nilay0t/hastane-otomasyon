@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="HastaneOtomasyon.MAUI.Views.Admin.AdminDashboardPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Admin Dashboard"
+    BackgroundColor="#F4F7FA">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="24" Spacing="20">
+
+            <VerticalStackLayout Spacing="6">
+                <Label
+                    Text="Admin Dashboard"
+                    FontSize="30"
+                    FontAttributes="Bold"
+                    TextColor="#102A43" />
+
+                <Label
+                    Text="Hastane otomasyon sistemi genel istatistikleri"
+                    FontSize="14"
+                    TextColor="#627D98" />
+            </VerticalStackLayout>
+
+            <Grid
+                ColumnDefinitions="*,*"
+                RowDefinitions="Auto,Auto"
+                ColumnSpacing="14"
+                RowSpacing="14">
+
+                <Border
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    BackgroundColor="White"
+                    Stroke="#D9E2EC"
+                    StrokeThickness="1"
+                    Padding="18">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="18" />
+                    </Border.StrokeShape>
+
+                    <VerticalStackLayout Spacing="6">
+                        <Label
+                            Text="Toplam Randevu"
+                            FontSize="13"
+                            TextColor="#627D98" />
+
+                        <Label
+                            Text="0"
+                            FontSize="28"
+                            FontAttributes="Bold"
+                            TextColor="#102A43" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    BackgroundColor="White"
+                    Stroke="#D9E2EC"
+                    StrokeThickness="1"
+                    Padding="18">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="18" />
+                    </Border.StrokeShape>
+
+                    <VerticalStackLayout Spacing="6">
+                        <Label
+                            Text="Toplam Hasta"
+                            FontSize="13"
+                            TextColor="#627D98" />
+
+                        <Label
+                            Text="0"
+                            FontSize="28"
+                            FontAttributes="Bold"
+                            TextColor="#102A43" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    BackgroundColor="White"
+                    Stroke="#D9E2EC"
+                    StrokeThickness="1"
+                    Padding="18">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="18" />
+                    </Border.StrokeShape>
+
+                    <VerticalStackLayout Spacing="6">
+                        <Label
+                            Text="Toplam Doktor"
+                            FontSize="13"
+                            TextColor="#627D98" />
+
+                        <Label
+                            Text="0"
+                            FontSize="28"
+                            FontAttributes="Bold"
+                            TextColor="#102A43" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    BackgroundColor="White"
+                    Stroke="#D9E2EC"
+                    StrokeThickness="1"
+                    Padding="18">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="18" />
+                    </Border.StrokeShape>
+
+                    <VerticalStackLayout Spacing="6">
+                        <Label
+                            Text="Bugünkü Randevu"
+                            FontSize="13"
+                            TextColor="#627D98" />
+
+                        <Label
+                            Text="0"
+                            FontSize="28"
+                            FontAttributes="Bold"
+                            TextColor="#102A43" />
+                    </VerticalStackLayout>
+                </Border>
+
+            </Grid>
+
+            <Border
+                BackgroundColor="White"
+                Stroke="#D9E2EC"
+                StrokeThickness="1"
+                Padding="18">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="18" />
+                </Border.StrokeShape>
+
+                <VerticalStackLayout Spacing="10">
+                    <Label
+                        Text="Randevu İstatistikleri"
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        TextColor="#102A43" />
+
+                    <Label
+                        Text="Grafik alanı burada gösterilecek."
+                        FontSize="14"
+                        TextColor="#627D98" />
+                </VerticalStackLayout>
+            </Border>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,556 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="HastaneOtomasyon.MAUI.Views.Auth.LoginPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
+    Title="Giriş Yap"
+    BackgroundColor="White">
+
+    <Grid ColumnDefinitions="1.25*,0.9*">
+
+        <!-- SOL PANEL -->
+        <Grid
+            Grid.Column="0"
+            BackgroundColor="#0F3D5E"
+            IsVisible="{OnIdiom Phone=False, Desktop=True, Tablet=True}">
+
+            <!-- Dekoratif arka plan daireleri -->
+            <BoxView
+                WidthRequest="360"
+                HeightRequest="360"
+                CornerRadius="180"
+                BackgroundColor="#10B981"
+                Opacity="0.14"
+                HorizontalOptions="End"
+                VerticalOptions="Start"
+                TranslationX="120"
+                TranslationY="-120" />
+
+            <BoxView
+                WidthRequest="260"
+                HeightRequest="260"
+                CornerRadius="130"
+                BackgroundColor="White"
+                Opacity="0.05"
+                HorizontalOptions="Start"
+                VerticalOptions="End"
+                TranslationX="-80"
+                TranslationY="90" />
+
+            <!-- SOL İÇERİK -->
+            <Grid
+                Padding="42,34,42,28"
+                RowDefinitions="Auto,*,Auto,Auto">
+
+                <!-- LOGO -->
+                <HorizontalStackLayout
+                    Grid.Row="0"
+                    Spacing="14"
+                    VerticalOptions="Start">
+
+                    <Border
+                        WidthRequest="48"
+                        HeightRequest="48"
+                        BackgroundColor="#10B981"
+                        StrokeThickness="0">
+
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="16" />
+                        </Border.StrokeShape>
+
+                        <Label
+                            Text="H"
+                            FontSize="25"
+                            FontAttributes="Bold"
+                            TextColor="White"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center" />
+                    </Border>
+
+                    <VerticalStackLayout Spacing="1" VerticalOptions="Center">
+                        <Label
+                            Text="Hastane Otomasyon"
+                            FontSize="22"
+                            FontAttributes="Bold"
+                            TextColor="White" />
+
+                        <Label
+                            Text="RANDEVU VE YÖNETİM SİSTEMİ"
+                            FontSize="10"
+                            CharacterSpacing="2"
+                            TextColor="#7EC8E3" />
+                    </VerticalStackLayout>
+                </HorizontalStackLayout>
+
+                <!-- BAŞLIK ALANI -->
+                <VerticalStackLayout
+                    Grid.Row="1"
+                    VerticalOptions="Center"
+                    Spacing="18">
+
+                    <Border
+                        BackgroundColor="#173F5F"
+                        Stroke="#2A6F8F"
+                        StrokeThickness="1"
+                        Padding="14,8"
+                        HorizontalOptions="Start">
+
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="20" />
+                        </Border.StrokeShape>
+
+                        <HorizontalStackLayout Spacing="8">
+                            <BoxView
+                                WidthRequest="7"
+                                HeightRequest="7"
+                                CornerRadius="4"
+                                BackgroundColor="#10B981"
+                                VerticalOptions="Center" />
+
+                            <Label
+                                Text="ROL BAZLI GİRİŞ"
+                                FontSize="11"
+                                FontAttributes="Bold"
+                                CharacterSpacing="1.5"
+                                TextColor="#10B981" />
+                        </HorizontalStackLayout>
+                    </Border>
+
+                    <Label
+                        Text="Hastane süreçlerini&#10;tek ekrandan&#10;yönetin."
+                        FontSize="40"
+                        FontAttributes="Bold"
+                        LineHeight="1.05"
+                        TextColor="White" />
+
+                    <Label
+                        Text="Randevu oluşturma, hasta takibi, doktor işlemleri ve yönetim ekranları için geliştirilen masaüstü hastane otomasyon sistemi."
+                        FontSize="14"
+                        LineHeight="1.35"
+                        MaximumWidthRequest="500"
+                        TextColor="#7EC8E3" />
+                </VerticalStackLayout>
+
+                <!-- ALT MODÜL KARTLARI -->
+                <Grid
+                    Grid.Row="2"
+                    ColumnDefinitions="*,*,*"
+                    ColumnSpacing="12"
+                    Margin="0,6,0,16">
+
+                    <Border
+                        Grid.Column="0"
+                        BackgroundColor="#1A5278"
+                        Stroke="#2D6F92"
+                        StrokeThickness="1"
+                        Padding="14">
+
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="18" />
+                        </Border.StrokeShape>
+
+                        <VerticalStackLayout Spacing="5">
+                            <Label
+                                Text="Randevu"
+                                FontSize="19"
+                                FontAttributes="Bold"
+                                TextColor="White" />
+
+                            <Label
+                                Text="Planlama ve takip"
+                                FontSize="11"
+                                TextColor="#7EC8E3" />
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <Border
+                        Grid.Column="1"
+                        BackgroundColor="#1A5278"
+                        Stroke="#2D6F92"
+                        StrokeThickness="1"
+                        Padding="14">
+
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="18" />
+                        </Border.StrokeShape>
+
+                        <VerticalStackLayout Spacing="5">
+                            <Label
+                                Text="Hasta"
+                                FontSize="19"
+                                FontAttributes="Bold"
+                                TextColor="White" />
+
+                            <Label
+                                Text="Kayıt ve detay"
+                                FontSize="11"
+                                TextColor="#7EC8E3" />
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <Border
+                        Grid.Column="2"
+                        BackgroundColor="#1A5278"
+                        Stroke="#2D6F92"
+                        StrokeThickness="1"
+                        Padding="14">
+
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="18" />
+                        </Border.StrokeShape>
+
+                        <VerticalStackLayout Spacing="5">
+                            <Label
+                                Text="Doktor"
+                                FontSize="19"
+                                FontAttributes="Bold"
+                                TextColor="White" />
+
+                            <Label
+                                Text="Klinik işlemleri"
+                                FontSize="11"
+                                TextColor="#7EC8E3" />
+                        </VerticalStackLayout>
+                    </Border>
+                </Grid>
+
+                <!-- FOOTER -->
+                <HorizontalStackLayout
+                    Grid.Row="3"
+                    Spacing="8"
+                    VerticalOptions="End">
+
+                    <Label
+                        Text="🛡"
+                        FontSize="14"
+                        TextColor="#10B981"
+                        VerticalOptions="Center" />
+
+                    <Label
+                        Text="Rol bazlı erişim · Güvenli kullanıcı girişi · Merkezi randevu yönetimi"
+                        FontSize="12"
+                        TextColor="#7EC8E3"
+                        VerticalOptions="Center"
+                        LineBreakMode="TailTruncation" />
+                </HorizontalStackLayout>
+            </Grid>
+        </Grid>
+
+        <!-- SAĞ LOGIN PANEL -->
+        <Grid
+            Grid.Column="1"
+            BackgroundColor="White"
+            Padding="46,28"
+            RowDefinitions="Auto,*">
+
+            <!-- ÜST BAR -->
+            <Grid
+                Grid.Row="0"
+                ColumnDefinitions="*,Auto">
+
+                <HorizontalStackLayout
+                    Grid.Column="0"
+                    Spacing="10"
+                    IsVisible="{OnIdiom Phone=True, Desktop=False, Tablet=False}">
+
+                    <Border
+                        WidthRequest="40"
+                        HeightRequest="40"
+                        BackgroundColor="#0F3D5E"
+                        StrokeThickness="0">
+
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="13" />
+                        </Border.StrokeShape>
+
+                        <Label
+                            Text="H"
+                            FontSize="20"
+                            FontAttributes="Bold"
+                            TextColor="White"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center" />
+                    </Border>
+
+                    <Label
+                        Text="Hastane Otomasyon"
+                        FontSize="18"
+                        FontAttributes="Bold"
+                        TextColor="#0F3D5E"
+                        VerticalOptions="Center" />
+                </HorizontalStackLayout>
+
+                <Label
+                    Grid.Column="1"
+                    Text="Destek ›"
+                    FontSize="13"
+                    TextColor="#94A3B8"
+                    VerticalOptions="Center" />
+            </Grid>
+
+            <!-- FORM -->
+            <ScrollView Grid.Row="1">
+                <VerticalStackLayout
+                    MaximumWidthRequest="410"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    Spacing="0"
+                    Padding="0,18">
+
+                    <!-- BAŞLIK -->
+                    <VerticalStackLayout Spacing="6" Margin="0,0,0,22">
+                        <Label
+                            Text="GÜVENLİ GİRİŞ"
+                            FontSize="11"
+                            FontAttributes="Bold"
+                            CharacterSpacing="2"
+                            TextColor="#10B981" />
+
+                        <Label
+                            Text="Hoş Geldiniz"
+                            FontSize="32"
+                            FontAttributes="Bold"
+                            TextColor="#061624" />
+
+                        <Label
+                            Text="Hesabınızla sisteme erişin"
+                            FontSize="14"
+                            TextColor="#8899AA" />
+                    </VerticalStackLayout>
+
+                    <!-- ROL SEÇİMLERİ -->
+                    <Border
+                        BackgroundColor="#F1F5F9"
+                        StrokeThickness="0"
+                        Padding="5"
+                        Margin="0,0,0,16">
+
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="18" />
+                        </Border.StrokeShape>
+
+                        <Grid ColumnDefinitions="*,*,*" ColumnSpacing="5">
+
+                            <Button
+                                Grid.Column="0"
+                                x:Name="AdminRoleButton"
+                                Text="🛡 Admin"
+                                Clicked="OnAdminRoleClicked"
+                                BackgroundColor="Transparent"
+                                TextColor="#8899AA"
+                                CornerRadius="14"
+                                HeightRequest="44"
+                                FontAttributes="Bold"
+                                FontSize="13" />
+
+                            <Button
+                                Grid.Column="1"
+                                x:Name="DoktorRoleButton"
+                                Text="🩺 Doktor"
+                                Clicked="OnDoktorRoleClicked"
+                                BackgroundColor="Transparent"
+                                TextColor="#8899AA"
+                                CornerRadius="14"
+                                HeightRequest="44"
+                                FontAttributes="Bold"
+                                FontSize="13" />
+
+                            <Button
+                                Grid.Column="2"
+                                x:Name="HastaRoleButton"
+                                Text="👥 Hasta"
+                                Clicked="OnHastaRoleClicked"
+                                BackgroundColor="White"
+                                TextColor="#0F3D5E"
+                                CornerRadius="14"
+                                HeightRequest="44"
+                                FontAttributes="Bold"
+                                FontSize="13" />
+                        </Grid>
+                    </Border>
+
+                    <!-- ROL AÇIKLAMASI -->
+                    <Border
+                        BackgroundColor="#F0F9FF"
+                        Stroke="#BAE6FD"
+                        StrokeThickness="1"
+                        Padding="14"
+                        Margin="0,0,0,16">
+
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="14" />
+                        </Border.StrokeShape>
+
+                        <HorizontalStackLayout Spacing="10">
+                            <Label
+                                Text="👥"
+                                FontSize="16"
+                                VerticalOptions="Center" />
+
+                            <Label
+                                x:Name="RoleHintLabel"
+                                Text="Hasta girişi"
+                                FontSize="13"
+                                FontAttributes="Bold"
+                                TextColor="#0F3D5E"
+                                VerticalOptions="Center" />
+                        </HorizontalStackLayout>
+                    </Border>
+
+                    <!-- KULLANICI ADI -->
+                    <material:TextField
+                        x:Name="KullaniciAdiEntry"
+                        Title="Kullanıcı Adı"
+                        AccentColor="#0F3D5E"
+                        BorderColor="#E2E8F0"
+                        TextColor="#0F172A"
+                        Margin="0,0,0,14" />
+
+                    <!-- ŞİFRE -->
+                    <VerticalStackLayout Spacing="8" Margin="0,0,0,14">
+                        <Label
+                            Text="ŞİFRE"
+                            FontSize="10"
+                            FontAttributes="Bold"
+                            CharacterSpacing="1.8"
+                            TextColor="#374151" />
+
+                        <Border
+                            BackgroundColor="White"
+                            Stroke="#E2E8F0"
+                            StrokeThickness="2"
+                            Padding="14,0">
+
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="14" />
+                            </Border.StrokeShape>
+
+                            <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
+                                <Label
+                                    Grid.Column="0"
+                                    Text="🔒"
+                                    FontSize="16"
+                                    TextColor="#94A3B8"
+                                    VerticalOptions="Center" />
+
+                                <Entry
+                                    Grid.Column="1"
+                                    x:Name="SifreEntry"
+                                    Placeholder="••••••••"
+                                    IsPassword="True"
+                                    TextColor="#0F172A"
+                                    PlaceholderColor="#CBD5E1"
+                                    BackgroundColor="Transparent"
+                                    HeightRequest="48" />
+
+                                <Button
+                                    Grid.Column="2"
+                                    x:Name="PasswordVisibilityButton"
+                                    Text="👁"
+                                    Clicked="OnPasswordVisibilityClicked"
+                                    BackgroundColor="Transparent"
+                                    TextColor="#94A3B8"
+                                    WidthRequest="42"
+                                    HeightRequest="42"
+                                    Padding="0" />
+                            </Grid>
+                        </Border>
+                    </VerticalStackLayout>
+
+                    <!-- BENİ HATIRLA + ŞİFREMİ UNUTTUM -->
+                    <Grid ColumnDefinitions="*,Auto" Margin="0,0,0,18">
+                        <HorizontalStackLayout
+                            Grid.Column="0"
+                            Spacing="8"
+                            VerticalOptions="Center">
+
+                            <CheckBox
+                                x:Name="RememberMeCheckBox"
+                                Color="#0F3D5E"
+                                VerticalOptions="Center" />
+
+                            <Label
+                                Text="Beni hatırla"
+                                FontSize="13"
+                                TextColor="#6B7280"
+                                VerticalOptions="Center" />
+                        </HorizontalStackLayout>
+
+                        <Button
+                            Grid.Column="1"
+                            x:Name="ForgotPasswordButton"
+                            Text="Şifremi unuttum"
+                            Clicked="OnForgotPasswordClicked"
+                            BackgroundColor="Transparent"
+                            TextColor="#0F3D5E"
+                            FontSize="13"
+                            FontAttributes="Bold"
+                            Padding="0"
+                            VerticalOptions="Center" />
+                    </Grid>
+
+                    <!-- GİRİŞ BUTONU -->
+                    <Button
+                        x:Name="GirisButton"
+                        Text="Sisteme Giriş Yap  ›"
+                        Clicked="OnLoginClicked"
+                        BackgroundColor="#0F3D5E"
+                        TextColor="White"
+                        CornerRadius="14"
+                        HeightRequest="50"
+                        FontAttributes="Bold"
+                        FontSize="14"
+                        Margin="0,0,0,16" />
+
+                    <!-- DIVIDER -->
+                    <Grid
+                        ColumnDefinitions="*,Auto,*"
+                        ColumnSpacing="14"
+                        Margin="0,0,0,16">
+
+                        <BoxView
+                            Grid.Column="0"
+                            HeightRequest="1"
+                            BackgroundColor="#E2E8F0"
+                            VerticalOptions="Center" />
+
+                        <Label
+                            Grid.Column="1"
+                            Text="VEYA"
+                            FontSize="11"
+                            CharacterSpacing="1.5"
+                            TextColor="#CBD5E1"
+                            VerticalOptions="Center" />
+
+                        <BoxView
+                            Grid.Column="2"
+                            HeightRequest="1"
+                            BackgroundColor="#E2E8F0"
+                            VerticalOptions="Center" />
+                    </Grid>
+
+                    <!-- KAYIT -->
+                    <Button
+                        x:Name="RegisterNavigationButton"
+                        Text="İlk kez mi geldiniz? Hasta kaydı oluşturun"
+                        Clicked="OnRegisterClicked"
+                        BackgroundColor="Transparent"
+                        TextColor="#10B981"
+                        FontAttributes="Bold"
+                        FontSize="13"
+                        HeightRequest="44" />
+
+                    <!-- FOOTER -->
+                    <Label
+                        Text="© 2026 Hastane Randevu ve Yönetim Otomasyonu"
+                        FontSize="11"
+                        TextColor="#CBD5E1"
+                        HorizontalTextAlignment="Center"
+                        HorizontalOptions="Center"
+                        Margin="0,12,0,0" />
+                </VerticalStackLayout>
+            </ScrollView>
+        </Grid>
+    </Grid>
+</ContentPage>
